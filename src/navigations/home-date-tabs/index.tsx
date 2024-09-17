@@ -10,7 +10,7 @@ const Tab = createMaterialTopTabNavigator();
 function MyTabBar({ state, descriptors, navigation, position }: MaterialTopTabBarProps) {
     const width = Dimensions.get('window').width;
     return (
-        <View style={{ flexDirection: 'row', marginHorizontal: width * 0.2, marginVertical: 20, borderWidth: 1, borderColor: TWColors.GREYD9, borderRadius: 50 }}>
+        <View key={state.key} style={{ flexDirection: 'row', marginHorizontal: width * 0.2, marginVertical: 20, borderWidth: 1, borderColor: TWColors.GREYD9, borderRadius: 50 }}>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label =
@@ -58,7 +58,6 @@ function MyTabBar({ state, descriptors, navigation, position }: MaterialTopTabBa
                         style={{ opacity, flex: 1, alignItems: 'center', justifyContent: 'center', height: 50, borderRadius: 50, backgroundColor: isFocused ? '#5A91FF' : 'transparent' }}
                     >
                         <Animated.View style={{ opacity }}>
-
                             <Animated.Text style={{ opacity, color: isFocused ? TWColors.WHITE : TWColors.GREY7F }}>
                                 {label}
                             </Animated.Text>
@@ -83,7 +82,7 @@ const HomeDateTabs = () => {
             component: Daily,
         }
     ], [])
-    
+
     return (
         <Tab.Navigator tabBar={props => <MyTabBar {...props} />}>
             {menu?.map(item => (

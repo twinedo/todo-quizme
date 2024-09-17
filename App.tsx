@@ -3,6 +3,7 @@ import Navigations from 'navigations';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { TWStyles } from 'twrn-styles';
 import 'translations'
+import 'react-native-get-random-values';
 
 export default function App() {
   return (

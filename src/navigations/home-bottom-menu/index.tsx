@@ -10,11 +10,17 @@ import SimpleLineIcons from '@expo/vector-icons/SimpleLineIcons';
 import { View } from 'react-native';
 import { FloatingActionButton } from 'twrn-components';
 import FontAwesome6 from '@expo/vector-icons/FontAwesome6';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack/lib/typescript/src/types';
+import { NavParam } from 'navigations/navigations.type';
+import todoStore from 'stores/todo';
 
 const Tab = createMaterialTopTabNavigator();
 
 const HomeBottomMenu = () => {
+  const navigation = useNavigation<NativeStackNavigationProp<NavParam, 'Home'>>()
   const [widthAnim, setWidthAnim] = useState(false);
+  const onSetSelectedToto = todoStore(state => state.onSetSelectedTodo)
 
   const swipeStart = () => setWidthAnim(true);
   const swipeEnd = () => setWidthAnim(false);
@@ -86,6 +92,10 @@ const HomeBottomMenu = () => {
       position='bottom-center'
       containerStyle={{elevation: 10, bottom: 30}}
       backgroundColor="#5A91FF"
+      onPress={() => {
+        onSetSelectedToto?.(null)
+        navigation.navigate('Notes', {type: 'create'})
+      }}
     >
       <FontAwesome6 name="plus" size={24} color={TWColors.WHITE}/>
     </FloatingActionButton>
