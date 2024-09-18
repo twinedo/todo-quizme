@@ -4,11 +4,11 @@ import todoStore from 'stores/todo'
 import { TWStyles } from 'twrn-styles';
 import moment from 'moment';
 import { TTodoDetail } from 'stores/todo/todo.type';
-import { ActionsSheetNote, Calendars, CardNote, EmptyNote, ToolbarList } from 'components';
+import { ActionsSheetNote, Calendars, CardNote, EmptyNote, ToolbarList, WeekNote } from 'components';
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { NavParam } from 'navigations/navigations.type';
-import { styles } from './daily';
+import { styles } from './daily.style';
 import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import { SELECTED_FORMAT } from './daily.const';
 import { DateTime } from 'twrn-components';
@@ -85,30 +85,22 @@ const Daily = () => {
       setFilteredTodos(filtered);
     }
     actionSheetRef.current?.hide()
-    
+
   }
 
   return (
     <View style={[TWStyles.displayFlex, TWStyles.verticalDefaultPadding, TWStyles.horizontalDefaultPadding]}>
       <ScrollView contentContainerStyle={[TWStyles.flexGrow, { paddingHorizontal: 4 }]}>
-        {/* <Calendars
-          markedDates={markedDates}
-          onMonthChange={(date) => setSelectedDate(date.month! - 1)}
-        /> */}
+        <View>
 
-        <DateTime 
-          value={selectedDate}
-          dateFormat='YYYY-MM-DD'
-          onSelect={(_, date) => console.log('date', date)}
-        />
-
-        <View style={{ marginTop: 20 }}>
-          <ToolbarList
-            onSearchChange={onSearchChange}
-            value={searchTxt}
-            onFilterPress={() => actionSheetRef.current?.show()}
-          />
+        <WeekNote onSelectedDate={(date) => setSelectedDate(new Date(date))} />
         </View>
+
+        <ToolbarList
+          onSearchChange={onSearchChange}
+          value={searchTxt}
+          onFilterPress={() => actionSheetRef.current?.show()}
+        />
 
         <FlatList
           data={filteredTodos}
@@ -120,12 +112,13 @@ const Daily = () => {
           contentContainerStyle={styles.listContainer}
         />
         <ActionSheet ref={actionSheetRef}>
-          <ActionsSheetNote 
-            onClose={() => actionSheetRef.current?.hide()} 
-            onReset={() => actionSheetRef.current?.hide()} 
+          <ActionsSheetNote
+            onClose={() => actionSheetRef.current?.hide()}
+            onReset={() => actionSheetRef.current?.hide()}
             onSubmit={(val: string) => {
-              onFilterSubmit(val)}
-            } 
+              onFilterSubmit(val)
+            }
+            }
             value={selectedFilter}
           />
         </ActionSheet>
