@@ -90,10 +90,9 @@ const Daily = () => {
 
   return (
     <View style={[TWStyles.displayFlex, TWStyles.verticalDefaultPadding, TWStyles.horizontalDefaultPadding]}>
-      <ScrollView contentContainerStyle={[TWStyles.flexGrow, { paddingHorizontal: 4 }]}>
+      <ScrollView contentContainerStyle={[TWStyles.flexGrow, TWStyles.px4]}>
         <View>
-
-        <WeekNote onSelectedDate={(date) => setSelectedDate(new Date(date))} />
+          <WeekNote onSelectedDate={(date) => setSelectedDate(new Date(date))} />
         </View>
 
         <ToolbarList

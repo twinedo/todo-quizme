@@ -24,7 +24,7 @@ const Notes = () => {
     const route = useRoute<RouteProp<NavParam, 'Notes'>>()
     const navigation = useNavigation<NativeStackNavigationProp<NavParam, 'Notes'>>()
     const richText = useRef<RichEditor>(null);
-    const { onSubmit, onUpdate, selectedTodo, onDelete, onSetSelectedTodo } = todoStore();
+    const { onSubmit, onUpdate, selectedTodo, onDelete, onSetSelectedTodo } = todoStore((state) => state);
 
     const {
         control,

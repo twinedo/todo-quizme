@@ -11,6 +11,7 @@ import { NavParam } from 'navigations/navigations.type';
 import { styles } from './monthly.style';
 import ActionSheet, { ActionSheetRef } from "react-native-actions-sheet";
 import { SELECTED_FORMAT } from './monthly.const';
+import lodash from 'lodash'
 
 const Monthly = () => {
   const navigation = useNavigation<NativeStackNavigationProp<NavParam, 'Monthly'>>()
@@ -28,6 +29,7 @@ const Monthly = () => {
 
   const [selectedFilter, setSelectedFilter] = useState('All')
 
+
   useEffect(() => {
     const flattenDate = todos.flatMap(o => o.createdDate)
     let newArr = {};
@@ -40,7 +42,9 @@ const Monthly = () => {
     setMarkedDates(newArr)
 
     const filtered = todos.filter(item => moment(item.createdDate).month() === selectedMonth);
-    setFilteredTodos(filtered);
+    const sort = lodash.sortBy(filtered, ['updatedDate', 'desc'])
+
+    setFilteredTodos(sort);
 
   }, [todos, selectedMonth])
 
