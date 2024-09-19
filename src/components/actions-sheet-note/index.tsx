@@ -21,10 +21,10 @@ const ActionsSheetNote = (props: TActionSheetProps) => {
                 TWStyles.alignCenter, 
                 TWStyles.justifySpaceBetween
             ]}>
-                <Text>Filter</Text>
+                <Text style={{fontWeight: 'bold'}}>Filter</Text>
                 <Ionicons name="close" size={24} color={TWColors.GREY7F} onPress={onClose} />
             </View>
-            <View>
+            <View style={[TWStyles.rowGap8]}>
                 <Text>Status</Text>
                 <View style={[TWStyles.row, TWStyles.columnGap16]}>
                     {options.map((o) => (
