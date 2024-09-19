@@ -7,11 +7,9 @@ import { TDayItemProps, TWeekNoteProps } from './week-note.type';
 const getWeekDays = () => {
     const startOfWeek = moment().startOf('week');
     const days = [];
-
     for (let i = 0; i < 7; i++) {
         days.push(startOfWeek.clone().add(i, 'days'));
     }
-
     return days;
 };
 
@@ -59,7 +57,6 @@ const WeekNote = (props: TWeekNoteProps) => {
                             isToday={isToday}
                             selectedDay={selectedDate}
                             onPress={() => {
-                                console.log(item.format('YYYY-MM-DD'))
                                 setSelectedDate(item.format('YYYY-MM-DD'))
                                 onSelectedDate(item.toString());
                             }} 

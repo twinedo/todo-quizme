@@ -10,11 +10,20 @@ import { TCardNoteProps } from './card-note.type'
 const CardNote = (props: TCardProps & TCardNoteProps) => {
   const { type = 'monthly'} = props;
   return (
-    <Card style={styles.container} containerStyle={{ padding: 0 }} {...props} onPress={props.onPress}>
-      <View style={{ alignItems: 'flex-end' }}>
-        <Text style={{ width: 60, color: 'white', textAlign: 'center', borderBottomLeftRadius: 12, paddingHorizontal: 8, backgroundColor: props.data.status === 'active' ? TWColors.ORANGE : TWColors.GREEN1 }}>{props.data.status}</Text>
+    <Card 
+      {...props}
+      style={styles.container} 
+      containerStyle={TWStyles.p0} 
+      onPress={props.onPress}
+      >
+      <View style={TWStyles.alignEnd}>
+        <Text style={[
+          styles.statusText, 
+          TWStyles.textAlignCenter, 
+          {backgroundColor: props.data.status === 'active' ? TWColors.ORANGE : TWColors.GREEN1 }
+        ]}>{props.data.status}</Text>
       </View>
-      <View style={[TWStyles.row, TWStyles.columnGap8, { padding: 8, }]}>
+      <View style={[TWStyles.row, TWStyles.columnGap8, { padding: 8 }]}>
         {type === 'monthly' && (
           <View style={TWStyles.alignCenter}>
             <Text style={styles.date}>{moment(props.data.createdDate).date()}</Text>
@@ -22,7 +31,7 @@ const CardNote = (props: TCardProps & TCardNoteProps) => {
           </View>
         )}
 
-        <View style={{ width: 1, height: '100%', backgroundColor: TWColors.GREYD9 }} />
+        {type === 'monthly' && <View style={styles.separator} />}
         <View style={[TWStyles.displayFlex, TWStyles.row, TWStyles.alignCenter, TWStyles.justifySpaceBetween]}>
           <Text style={styles.title}>{props.data.title}</Text>
           <Text style={styles.time}>{moment(props.data.createdDate).fromNow()}</Text>

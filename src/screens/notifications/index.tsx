@@ -1,14 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { View } from 'react-native'
 import React from 'react'
+import { TWStyles } from 'twrn-styles'
+import { ComingSoon } from 'components'
 
 const Notifications = () => {
   return (
-    <View>
-      <Text>Notifications</Text>
+    <View style={[TWStyles.container, TWStyles.alignCenter, TWStyles.justifyCenter]}>
+      <ComingSoon />
     </View>
   )
 }
 
 export default Notifications
-
-const styles = StyleSheet.create({})

@@ -1,10 +1,12 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React from 'react'
+import { TWStyles } from 'twrn-styles'
+import { ComingSoon } from 'components'
 
 const History = () => {
   return (
-    <View>
-      <Text>History</Text>
+    <View style={[TWStyles.container, TWStyles.alignCenter, TWStyles.justifyCenter]}>
+      <ComingSoon />
     </View>
   )
 }

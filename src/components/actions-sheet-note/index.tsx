@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 import React, { useMemo, useState } from 'react'
 import { TWColors, TWStyles } from 'twrn-styles'
 import { Feather, Ionicons } from '@expo/vector-icons'
@@ -6,18 +6,21 @@ import { Button } from 'twrn-components'
 import { TActionSheetProps } from './actions-sheet-note.type'
 
 const ActionsSheetNote = (props: TActionSheetProps) => {
-    const {
-        onReset,
-        onSubmit,
-        onClose,
-        value = 'All',
-    } = props;
+    const { onReset, onSubmit, onClose, value = 'All' } = props;
     const options = useMemo(() => ['All', 'Active', 'Done'], [])
 
     const [selectedFilter, setSelectedFilter] = useState<string>(value)
     return (
-        <View style={[TWStyles.rowGap16, TWStyles.horizontalDefaultPadding, TWStyles.verticalDefaultPadding]}>
-            <View style={[TWStyles.row, TWStyles.alignCenter, TWStyles.justifySpaceBetween]}>
+        <View style={[
+            TWStyles.rowGap16, 
+            TWStyles.horizontalDefaultPadding, 
+            TWStyles.verticalDefaultPadding
+        ]}>
+            <View style={[
+                TWStyles.row, 
+                TWStyles.alignCenter, 
+                TWStyles.justifySpaceBetween
+            ]}>
                 <Text>Filter</Text>
                 <Ionicons name="close" size={24} color={TWColors.GREY7F} onPress={onClose} />
             </View>
@@ -33,14 +36,12 @@ const ActionsSheetNote = (props: TActionSheetProps) => {
                 </View>
             </View>
             <View style={[TWStyles.row, TWStyles.columnGap16, TWStyles.justifyAround]}>
-
                 <Button
                     onPress={onReset}
                     text='Reset'
                     backgroundColor={TWColors.RED}
                     containerStyle={TWStyles.displayFlex}
                 />
-
 
                 <Button
                     onPress={() => onSubmit?.(selectedFilter)}
@@ -54,5 +55,3 @@ const ActionsSheetNote = (props: TActionSheetProps) => {
 }
 
 export default ActionsSheetNote
-
-const styles = StyleSheet.create({})

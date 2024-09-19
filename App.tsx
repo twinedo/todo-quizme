@@ -6,12 +6,19 @@ import { TWStyles } from 'twrn-styles';
 import 'translations'
 import 'react-native-get-random-values';
 import { useEffect } from 'react';
-import { registerBackgroundFetch } from 'services/background';
+import Toast from 'react-native-toast-message';
+
+Notifications.setNotificationHandler({
+  handleNotification: async () => ({
+    shouldShowAlert: true,
+    shouldPlaySound: false,
+    shouldSetBadge: true,
+  }),
+});
 
 export default function App() {
   useEffect(() => {
     requestNotificationPermissions();
-    registerBackgroundFetch();
   }, []);
 
   async function requestNotificationPermissions() {
@@ -25,6 +32,7 @@ export default function App() {
     <NavigationContainer>
       <SafeAreaView style={TWStyles.flexGrow}>
         <Navigations />
+        <Toast />
       </SafeAreaView>
     </NavigationContainer>
   );

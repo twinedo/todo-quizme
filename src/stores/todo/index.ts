@@ -101,7 +101,6 @@ const todoStore = create<TTodo>()(
 			{
 				name: '@todoState-quizme',
 				storage: createJSONStorage(() => AsyncStorage),
-				// storage: createJSONStorage(() => localStorage),
 			}
 		)
 	)

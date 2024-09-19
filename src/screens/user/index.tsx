@@ -1,12 +1,13 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import { ComingSoon } from 'components'
+import { TWStyles } from 'twrn-styles'
 
 const User = () => {
   return (
-    <SafeAreaView>
-      <Text>User</Text>
-    </SafeAreaView>
+    <View style={[TWStyles.container, TWStyles.alignCenter, TWStyles.justifyCenter]}>
+      <ComingSoon />
+    </View>
   )
 }
 

@@ -1,5 +1,5 @@
 import { Pressable, ScrollView, Text, View } from 'react-native'
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useMemo, useRef, useState } from 'react'
 import { TWColors, TWStyles } from 'twrn-styles'
 import { Button, Input } from 'twrn-components'
 import { RichEditor, actions, RichToolbar } from 'react-native-pell-rich-editor'
@@ -13,6 +13,8 @@ import todoStore from 'stores/todo'
 import { TTodoDetail } from 'stores/todo/todo.type'
 import { NativeStackNavigationProp } from '@react-navigation/native-stack'
 import Feather from '@expo/vector-icons/Feather';
+import { onDisplayNotification } from 'services/notifications'
+import { successCreated } from './notes.const'
 
 const schema = yup
     .object({
@@ -42,8 +44,6 @@ const Notes = () => {
 
     const [selectedStatus, setSelectedStatus] = useState<'active' | 'done'>(selectedTodo?.status ?? 'active');
 
-
-
     const onSubmitNote = (data: TTodoDetail) => {
         if (route.params.type === 'update') {
             
@@ -57,7 +57,9 @@ const Notes = () => {
             onSubmit?.(data)
         }
         onSetSelectedTodo?.(null)
-        navigation.goBack()
+        navigation.goBack();
+        const successUpdated = `${data.title} has been updated!`
+        onDisplayNotification(data.title, route.params.type === 'update' ? successUpdated : successCreated)
     }
 
     const handleChange = useCallback((html: string) => {
@@ -147,8 +149,8 @@ const Notes = () => {
             {route.params.type === 'update' && (<>
                 <Text>Status</Text>
                 <View style={[TWStyles.row, TWStyles.columnGap16]}>
-                    {checks.map((o) => (
-                        <Pressable style={[TWStyles.row, TWStyles.columnGap12, TWStyles.alignCenter]} onPress={() => setSelectedStatus(o.toLowerCase())} >
+                    {checks.map((o: string) => (
+                        <Pressable style={[TWStyles.row, TWStyles.columnGap12, TWStyles.alignCenter]} onPress={() => setSelectedStatus(o === 'Active' ? 'active' : 'done')} >
                             <Feather name={selectedStatus?.toLowerCase() === o.toLowerCase() ? "check-square" : "square"} size={24} color="black" />
                             <Text>{o}</Text>
                         </Pressable>

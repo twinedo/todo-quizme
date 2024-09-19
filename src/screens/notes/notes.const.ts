@@ -1,0 +1,1 @@
+export const successCreated = `new Note has been created!`

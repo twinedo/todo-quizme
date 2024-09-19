@@ -31,10 +31,10 @@ export const styles = StyleSheet.create({
       },
     dayText: {
       fontSize: 16,
-      color: 'black',
+      color: TWColors.BLACK,
     },
     todayText: {
-      color: 'white',
+      color: TWColors.WHITE,
     },
   });
   

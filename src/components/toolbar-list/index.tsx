@@ -17,7 +17,7 @@ const ToolbarList = (props: TToolbarListProps & TInputProps) => {
                     value={props.value}
                     onChangeText={onSearchChange}
                     placeholder='Please Type here...'
-                    containerStyle={{ backgroundColor: 'white', elevation: 1 }}
+                    containerStyle={styles.containerInput}
                     {...props}
                 />
             </View>

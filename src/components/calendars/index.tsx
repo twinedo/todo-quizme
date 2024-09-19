@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import { Calendar } from 'react-native-calendars'
 import moment from 'moment'
 import { TCalendarsProps } from './calendars.type'
+import { styles } from './calendars.style'
 
 const Calendars = <T,>(props: TCalendarsProps<T>) => {
   return (
@@ -23,7 +23,3 @@ const Calendars = <T,>(props: TCalendarsProps<T>) => {
 }
 
 export default Calendars
-
-const styles = StyleSheet.create({
-    container: { borderRadius: 10, elevation: 2, fontWeight: 'bold'}
-})

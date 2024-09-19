@@ -1,16 +1,18 @@
-import { Octicons, SimpleLineIcons } from '@expo/vector-icons';
 import { createMaterialTopTabNavigator, MaterialTopTabBarProps } from '@react-navigation/material-top-tabs';
 import { useMemo } from 'react';
 import { Animated, View, TouchableOpacity, Dimensions } from 'react-native';
-import { Daily, Monthly, Notifications, User } from 'screens';
-import { TWColors } from 'twrn-styles';
+import { Daily, Monthly } from 'screens';
+import { TWColors, TWStyles } from 'twrn-styles';
+import { styles } from './home-date-tabs.style';
 
 const Tab = createMaterialTopTabNavigator();
 
 function MyTabBar({ state, descriptors, navigation, position }: MaterialTopTabBarProps) {
     const width = Dimensions.get('window').width;
     return (
-        <View key={state.key} style={{ flexDirection: 'row', marginHorizontal: width * 0.2, marginVertical: 20, borderWidth: 1, borderColor: TWColors.GREYD9, borderRadius: 50 }}>
+        <View 
+            key={state.key} 
+            style={[styles.container, TWStyles.row, { marginHorizontal: width * 0.2 }]}>
             {state.routes.map((route, index) => {
                 const { options } = descriptors[route.key];
                 const label =
@@ -55,7 +57,13 @@ function MyTabBar({ state, descriptors, navigation, position }: MaterialTopTabBa
                         testID={options.tabBarTestID}
                         onPress={onPress}
                         onLongPress={onLongPress}
-                        style={{ opacity, flex: 1, alignItems: 'center', justifyContent: 'center', height: 50, borderRadius: 50, backgroundColor: isFocused ? '#5A91FF' : 'transparent' }}
+                        style={[
+                            styles.containerTabItem, 
+                            TWStyles.displayFlex, 
+                            TWStyles.alignCenter, 
+                            TWStyles.justifyCenter, 
+                            { opacity, backgroundColor: isFocused ? '#5A91FF' : 'transparent' }
+                        ]}
                     >
                         <Animated.View style={{ opacity }}>
                             <Animated.Text style={{ opacity, color: isFocused ? TWColors.WHITE : TWColors.GREY7F }}>

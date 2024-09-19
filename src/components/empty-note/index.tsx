@@ -12,7 +12,6 @@ const EmptyNote = () => {
         TWStyles.my16,
         TWStyles.justifyCenter, 
         TWStyles.rowGap12,
-        { height: 250 }
     ]}>
         <Text style={styles.title}>Empty Notes on this day</Text>
         <Text>Create one</Text>

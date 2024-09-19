@@ -10,5 +10,6 @@ export const styles = StyleSheet.create({
         borderRadius: 12,
         justifyContent: 'center',
         alignItems: 'center'
-    }
+    },
+    containerInput: { borderWidth: 0, backgroundColor: TWColors.WHITE, elevation: 1 }
 })
